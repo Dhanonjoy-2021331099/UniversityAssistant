@@ -3,22 +3,36 @@ const path = require("path");
 
 const app = express();
 
-// Static Files
-app.use(express.static(path.join(__dirname, "../frontend")));
-
-// Import Routes
 const homeRoutes = require("./routes/homeRoutes");
 const aboutRoutes = require("./routes/aboutRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const serviceRoutes = require("./routes/services");
+const noticeRoutes = require("./routes/notice");
+const eventRoutes = require("./routes/event");
+const authRoutes = require("./routes/auth");
 
-// Use Routes
-app.use(homeRoutes);
-app.use(aboutRoutes);
-app.use(contactRoutes);
+// Middleware
+app.use(express.static(path.join(__dirname, "../frontend")));
 
-// Server Start
+// Routes
+app.use("/about", aboutRoutes);
+app.use("/contact", contactRoutes);
+app.use("/services", serviceRoutes);
+app.use("/notice", noticeRoutes);
+app.use("/events", eventRoutes);
+app.use("/", authRoutes);
+app.use("/", homeRoutes);
+
+// Test route
+app.get("/test", (req, res) => {
+  res.send("Test route works!");
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server Running : http://localhost:${PORT}`);
+  console.log(
+    "Routes loaded: /about, /contact, /services, /notice, /events, /login, /register, /",
+  );
 });
