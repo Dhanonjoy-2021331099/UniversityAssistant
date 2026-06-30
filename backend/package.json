@@ -1,0 +1,14 @@
+{
+  "name": "backend-course",
+  "version": "1.0.0",
+  "description": "My First Backend Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Dhanonjoy Kumar Barman",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
